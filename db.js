@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 
 //url for mongo db connection
-const mongoURL = 'mongodb://localhost:27017/restaurant';
+const mongoURL = process.env.DB_URL; ;
 
 //setup mongo db connection
 mongoose.connect(mongoURL, {
-    //  useNewUrlParser: true,
-    //   useUnifiedTopology: true,
+      useNewUrlParser: true,
+     useUnifiedTopology: true,
 });
 
 //get the default connection object
