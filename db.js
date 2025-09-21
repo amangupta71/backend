@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 
 
 //url for mongo db connection
@@ -7,8 +7,8 @@ const mongoURL = process.env.DB_URL; ;
 
 //setup mongo db connection
 mongoose.connect(mongoURL, {
-      useNewUrlParser: true,
-     useUnifiedTopology: true,
+     // useNewUrlParser: true,
+     //useUnifiedTopology: true,
 });
 
 //get the default connection object

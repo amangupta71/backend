@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const dp = require('./db');
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 
 //required for post request
 const bodyParser = require('body-parser');
