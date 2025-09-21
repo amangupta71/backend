@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const personSchema = new mongoose.Schema({
     name:{
@@ -39,6 +40,31 @@ const personSchema = new mongoose.Schema({
         required: true,
     }
 });
+
+personSchema.pre('save', async function(next){
+    const person = this;
+    if(!person.isModified('password'))return next();
+    try {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(this.password, salt);
+            this.password = hashedPassword;
+
+        next();
+
+    } catch (error) {
+        return next(err);
+    }
+});
+
+personSchema.methods.comparePassword = function(candidatePassword){
+    try {
+        const isMatched = bcrypt.compare(candidatePassword, this.password);
+        return isMatched;
+    } catch (error) {
+        
+    }
+}
+
 
 //Create a person model
 const Person = mongoose.model('Person', personSchema);
