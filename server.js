@@ -26,7 +26,7 @@ app.get('/',(req, res) => {
 
 
 
-
+// auth using local strategy
 app.use(passport.initialize());    
 const localAuthMiddleware = passport.authenticate('local',{session:false});
 
@@ -39,7 +39,7 @@ const localAuthMiddleware = passport.authenticate('local',{session:false});
 //import the router
 const personRoutes = require('./routes/personRoutes');
 //use the router middleware
-app.use('/person',localAuthMiddleware, personRoutes);
+app.use('/person', personRoutes);
 
 
 const menuRoutes = require('./routes/menuRoutes');
