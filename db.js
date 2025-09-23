@@ -3,8 +3,8 @@ require('dotenv').config({ quiet: true });
 
 
 //url for mongo db connection
-//const mongoURL = process.env.DB_URL; 
-const mongoURL = process.env.DB_URL_LOCAL; 
+const mongoURL = process.env.DB_URL; 
+//const mongoURL = process.env.DB_URL_LOCAL; 
 
 //setup mongo db connection
 mongoose.connect(mongoURL);
